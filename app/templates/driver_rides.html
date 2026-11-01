@@ -1,0 +1,149 @@
+<!-- <h1>Started</h1>
+
+{% for i in rides%}
+
+
+ride id{{i.id}} {{i.pickup_location}} {{i.drop_location}} {{i.fare}}
+
+<a href="/status/{{i.id}}/STARTED/">Start</a>
+<a href="/status/{{i.id}}/COMPLETED/">Complete</a>
+<a href="/status/{{i.id}}/CANCELLED/">cancel</a>
+
+{% endfor %} -->
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Driver Rides</title>
+</head>
+<body>
+
+    <h1>Driver Rides</h1>
+
+    {% for i in rides %}
+
+        <h3>Ride ID: {{ i.id }}</h3>
+
+        <p>Pickup: {{ i.pickup_location }}</p>
+
+        <p>Drop: {{ i.drop_location }}</p>
+
+        <p>Fare: Rs. {{ i.fare }}</p>
+
+        <p>Status: {{ i.status }}</p>
+
+        {% if i.status == 'ACCEPTED' %}
+
+            <form method="POST" action="{% url 'update_status' i.id 'STARTED' %}">
+                {% csrf_token %}
+                <button type="submit">Start Ride</button>
+            </form>
+
+            <br>
+
+            <form method="POST" action="{% url 'update_status' i.id 'CANCELLED' %}">
+                {% csrf_token %}
+                <button type="submit">Cancel Ride</button>
+            </form>
+
+        {% elif i.status == 'STARTED' %}
+
+            <form method="POST" action="{% url 'update_status' i.id 'COMPLETED' %}">
+                {% csrf_token %}
+                <button type="submit">Complete Ride</button>
+            </form>
+
+        {% endif %}
+
+        <hr>
+
+    {% empty %}
+
+        <p>No rides assigned to you.</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+
+</body>
+</html> -->
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Rides - Cab Booking</title>
+
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body>
+
+    <h1>My Driver Rides</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% for i in rides %}
+
+        <div>
+            <h3>Ride ID: {{ i.id }}</h3>
+
+            <p><b>Customer:</b> {{ i.customer.username }}</p>
+            <p><b>Pickup Location:</b> {{ i.pickup_location }}</p>
+            <p><b>Drop Location:</b> {{ i.drop_location }}</p>
+            <p><b>Fare:</b> ₹{{ i.fare }}</p>
+            <p><b>Status:</b> {{ i.status }}</p>
+
+            {% if i.status == 'ACCEPTED' %}
+
+                <form method="POST" action="{% url 'update_status' i.id 'STARTED' %}">
+                    {% csrf_token %}
+                    <button type="submit">Start Ride</button>
+                </form>
+
+                <form method="POST" action="{% url 'update_status' i.id 'CANCELLED' %}">
+                    {% csrf_token %}
+                    <button type="submit">Cancel Ride</button>
+                </form>
+
+            {% elif i.status == 'STARTED' %}
+
+                <form method="POST" action="{% url 'update_status' i.id 'COMPLETED' %}">
+                    {% csrf_token %}
+                    <button type="submit">Complete Ride</button>
+                </form>
+
+            {% endif %}
+
+        </div>
+
+    {% empty %}
+
+        <div>
+            <p>No rides assigned to you yet.</p>
+        </div>
+
+    {% endfor %}
+
+    <div>
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+
+</body>
+</html>

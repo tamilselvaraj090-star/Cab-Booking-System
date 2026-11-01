@@ -1,0 +1,96 @@
+<!-- <h1>Available_rides</h1>
+
+{% for i in rides%}
+
+ride id{{i.id}} {{i.pickup_location}} {{i.drop_location}} {{i.fare}}
+
+<a href="/accept/{{i.id}}/">Accpect</a>
+
+{% endfor %} -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Rides</title>
+</head>
+<body>
+
+    <h1>Available Rides</h1>
+
+    {% for i in rides %}
+
+        <h3>Ride ID: {{ i.id }}</h3>
+
+        <p>Pickup Location: {{ i.pickup_location }}</p>
+
+        <p>Drop Location: {{ i.drop_location }}</p>
+
+        <p>Fare: Rs. {{ i.fare }}</p>
+
+        <form method="POST" action="{% url 'accept' i.id %}">
+            {% csrf_token %}
+            <button type="submit">Accept Ride</button>
+        </form>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No available rides found.</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+
+</body>
+</html> -->
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Rides - Cab Booking</title>
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body>
+
+    <h1>Available Rides</h1>
+
+    {% for i in rides %}
+        <div>
+            <h3>Ride ID: {{ i.id }}</h3>
+
+            <p><b>Customer:</b> {{ i.customer.username }}</p>
+            <p><b>Pickup:</b> {{ i.pickup_location }}</p>
+            <p><b>Drop:</b> {{ i.drop_location }}</p>
+            <p><b>Fare:</b> ₹{{ i.fare }}</p>
+            <p><b>Status:</b> {{ i.status }}</p>
+
+            <form method="POST" action="{% url 'accept' i.id %}">
+                {% csrf_token %}
+                <button type="submit">Accept Ride</button>
+            </form>
+        </div>
+    {% empty %}
+        <div>
+            <p>No available rides right now.</p>
+        </div>
+    {% endfor %}
+
+    <div>
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+
+</body>
+</html>

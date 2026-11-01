@@ -1,0 +1,54 @@
+<!-- <h1>Welcome to cabBooking</h1>
+
+<a href="/register/">register</a>
+
+<a href="/login/">login</a>
+
+<a href="/book/">bookride</a> -->
+
+
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cab Booking System</title>
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body>
+
+    <h1>Welcome to Cab Booking System</h1>
+
+    {% if user.is_authenticated %}
+
+        <div>
+            <h3>Welcome, {{ user.username }}!</h3>
+
+            <a href="{% url 'book_ride' %}">Book Ride</a>
+            <a href="{% url 'my_rides' %}">My Rides</a>
+            <a href="{% url 'available_rides' %}">Available Rides</a>
+            <a href="{% url 'driver_rides' %}">Driver Rides</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+
+    {% else %}
+
+        <div>
+            <h3>Book Your Ride Easily!</h3>
+            <p>Welcome to our Cab Booking System.</p>
+
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+
+    {% endif %}
+
+</body>
+</html>
+

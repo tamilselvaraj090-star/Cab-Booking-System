@@ -1,0 +1,50 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rides - Cab Booking</title>
+
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body>
+
+    <h1>My Rides</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% for i in ride %}
+
+        <div>
+            <h3>Ride ID: {{ i.id }}</h3>
+
+            <p><b>Pickup Location:</b> {{ i.pickup_location }}</p>
+
+            <p><b>Drop Location:</b> {{ i.drop_location }}</p>
+
+            <p><b>Fare:</b> ₹{{ i.fare }}</p>
+
+            <p><b>Status:</b> {{ i.status }}</p>
+        </div>
+
+    {% empty %}
+
+        <div>
+            <p>No rides found.</p>
+        </div>
+
+    {% endfor %}
+
+    <div>
+        <a href="{% url 'book_ride' %}">Book New Ride</a>
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+
+</body>
+</html>

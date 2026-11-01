@@ -1,0 +1,123 @@
+<!-- <h1>Register page</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input type="text" name="username" placeholder="username"><br><br>
+    <input type="text" name="password" placeholder="password"><br><br>
+    <select name="role">
+
+    <option value="CUSTOMER">Customer</option>    
+
+    <option value="DRIVER">Driver</option>
+
+    </select><br><br>
+
+    <input tpe="Submit">
+
+
+
+</form> -->
+
+
+<!-- 
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Cab Booking</title>
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body>
+
+    <h1>Create Your Account</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <label>Username:</label>
+        <input type="text" name="username"
+               placeholder="Enter username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password"
+               placeholder="Enter password" required>
+
+        <label>Select Role:</label>
+        <select name="role" required>
+            <option value="">Choose Role</option>
+            <option value="CUSTOMER">Customer</option>
+            <option value="DRIVER">Driver</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+        <p>Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+    </form>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Cab Booking</title>
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
+</head>
+<body>
+
+    <h1>Create Your Account</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <label>Username:</label>
+        <input type="text" name="username"
+               placeholder="Enter username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password"
+               placeholder="Enter password" required>
+
+        <label>Select Role:</label>
+        <select name="role" required>
+            <option value="">Choose Role</option>
+            <option value="CUSTOMER">Customer</option>
+            <option value="DRIVER">Driver</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+        <p>Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+    </form>
+
+</body>
+</html>
